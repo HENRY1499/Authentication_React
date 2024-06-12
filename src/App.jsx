@@ -1,0 +1,23 @@
+import StateCompo from "./context/Counter";
+import Register from "./components/Auth/Register";
+import Login from "./components/Auth/Login";
+// router
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Index from "./Layouts/Index";
+
+function App() {
+  return (
+    <StateCompo>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Index/>}>
+            <Route index element={<Register></Register>}></Route>
+            <Route path="login" element={<Login></Login>}></Route>
+          </Route>
+        </Routes>
+      </Router>
+    </StateCompo>
+  );
+}
+
+export default App;
