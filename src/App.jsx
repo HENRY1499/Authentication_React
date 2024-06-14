@@ -4,6 +4,7 @@ import Login from "./components/Auth/Login";
 // router
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "./Layouts/Index";
+import Inicio from "./Layouts/Inicio";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Route index element={<Register></Register>}></Route>
             <Route path="login" element={<Login></Login>}></Route>
           </Route>
+          <Route path="/dashboard" element={<Inicio></Inicio>}></Route>
         </Routes>
       </Router>
     </StateCompo>

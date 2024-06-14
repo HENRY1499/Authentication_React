@@ -1,10 +1,32 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
+import { postLogin } from "../../services/axios";
 
 function Login() {
+  const [isFormData, setFormData] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
+  const handleChange = (e) => {
+    console.log(e.target)
+    const { name, value } = e.target;
+    setFormData({ ...isFormData, [name]: value });
+  };
+
+  console.log(isFormData)
+  const formSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const resp = await postLogin(isFormData)
+      console.log("resp", resp);
+      navigate("/dashboard")
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="w-full h-full">
       <div className="bg-transparent shadow-md shadow-gray-500 rounded-2xl">
-        <form>
+        <form onSubmit={formSubmit}>
           <div className="flex flex-col gap-5 justify-center items-center">
             <h1 className="font-extrabold text-black text-2xl tracking-widest px-4 py-2 font-sans uppercase mt-5">
               Ingresar
@@ -19,7 +41,9 @@ function Login() {
                 </label>
                 <input
                   type="text"
-                  id="email"
+                  name="email"
+                  value={isFormData.email}
+                  onChange={handleChange}
                   className="placeholder:italic border border-slate-300 inset-y-2 py-1 px-2 rounded-full ring-1 ring-green-500 focus:outline-none focus:border-green-500 focus:ring-green-500  focus:ring-2 hover:ring-2 placeholder:text-gray-500"
                   placeholder="Ingresa tú Correo"
                 />
@@ -32,8 +56,10 @@ function Login() {
                   Contraseña :
                 </label>
                 <input
-                  type="text"
-                  id="password"
+                  type="password"
+                  name="password"
+                  value={isFormData.password}
+                  onChange={handleChange}
                   className="placeholder:italic border border-slate-300 inset-y-2  py-1 px-2 rounded-full ring-1 ring-green-500 focus:outline-none focus:border-green-500 focus:ring-green-500  focus:ring-2 hover:ring-2 placeholder:text-gray-500"
                   placeholder="Ingresar Contraseña"
                 />
