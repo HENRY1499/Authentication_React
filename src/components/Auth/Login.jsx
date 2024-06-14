@@ -11,7 +11,6 @@ function Login() {
     setFormData({ ...isFormData, [name]: value });
   };
 
-  console.log(isFormData)
   const formSubmit = async (e) => {
     e.preventDefault();
     try {

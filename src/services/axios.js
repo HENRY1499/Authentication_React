@@ -5,15 +5,7 @@ const api = axios.create({
   baseURL: "http://127.0.0.1:8000",
 });
 
-export const fetxhData = async () => {
-  try {
-    const response = await api.get("/auth/register");
-    console.log("resp:", response.data);
-  } catch (error) {
-    console.log("Error obteniendo data:", error);
-    throw error;
-  }
-};
+
 
 export const postData = async (data) => {
   try {

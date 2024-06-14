@@ -4,6 +4,15 @@
 import { context } from "./context";
 
 const StateCompo = ({ children }) => {
-  return <context.Provider value={{}}>{children}</context.Provider>;
+  
+  return (
+    <context.Provider
+      value={{
+       
+      }}
+    >
+      {children}
+    </context.Provider>
+  );
 };
 export default StateCompo;
